@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Biodata & Tugas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="card">
+    <h2>🌸 Biodata & Hitung Umur 🌸</h2>
+
+    <input type="text" id="nama" placeholder="Nama Lengkap">
+    <input type="text" id="kelas" placeholder="Kelas">
+    <textarea id="alamat" placeholder="Alamat"></textarea>
+    <input type="date" id="tgl">
+
+    <button onclick="hitung()">Tampilkan</button>
+
+    <div id="hasil">
+        <p>Nama: <span id="outNama"></span></p>
+        <p>Kelas: <span id="outKelas"></span></p>
+        <p>Alamat: <span id="outAlamat"></span></p>
+        <p>Umur: <span id="outUmur"></span></p>
+    </div>
+
+    <div class="foto">
+        <h3>📸 Foto Tugas</h3>
+        <img src="tugas1.jpg">
+        <img src="tugas2.jpg">
+    </div>
+</div>
+
+<script>
+function hitung() {
+    const nama = document.getElementById('nama').value;
+    const kelas = document.getElementById('kelas').value;
+    const alamat = document.getElementById('alamat').value;
+    const tglInput = document.getElementById('tgl').value;
+
+    if (!tglInput) {
+        alert("Isi tanggal lahir dulu");
+        return;
+    }
+
+    const lahir = new Date(tglInput);
+    const now = new Date();
+
+    let tahun = now.getFullYear() - lahir.getFullYear();
+    let bulan = now.getMonth() - lahir.getMonth();
+    let hari = now.getDate() - lahir.getDate();
+
+    if (hari < 0) {
+        bulan--;
+        const lastMonth = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+        hari += lastMonth;
+    }
+
+    if (bulan < 0) {
+        tahun--;
+        bulan += 12;
+    }
+
+    document.getElementById('outNama').innerText = nama;
+    document.getElementById('outKelas').innerText = kelas;
+    document.getElementById('outAlamat').innerText = alamat;
+    document.getElementById('outUmur').innerText =
+        tahun + " tahun, " + bulan + " bulan, " + hari + " hari";
+
+    document.getElementById('hasil').style.display = "block";
+}
+
+/* bunga jatuh */
+for (let i = 0; i < 18; i++) {
+    let bunga = document.createElement("div");
+    bunga.className = "bunga";
+    bunga.innerHTML = "🌸";
+
+    bunga.style.left = Math.random() * 100 + "vw";
+    bunga.style.animationDuration = (6 + Math.random() * 4) + "s";
+
+    document.body.appendChild(bunga);
+}
+</script>
+
+</body>
+</html>
