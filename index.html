@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Biodata & Tugas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="card">
+    <h2>🌸 Hitung Umur 🌸</h2>
+
+    <input type="text" id="nama" placeholder="Nama">
+    <input type="date" id="tgl">
+
+    <button onclick="hitung()">Hitung</button>
+
+    <div id="hasil">
+        <p>Nama: <span id="outNama"></span></p>
+        <p>Umur: <span id="outUmur"></span></p>
+    </div>
+
+    <div class="foto">
+        <h3>📸 Foto Tugas</h3>
+
+        <!-- GANTI NAMA FILE DI SINI -->
+        <img src="tugas1.jpg" alt="Tugas 1">
+        <img src="tugas2.jpg" alt="Tugas 2">
+    </div>
+</div>
+
+<script>
+function hitung() {
+    const nama = document.getElementById('nama').value;
+    const tgl = new Date(document.getElementById('tgl').value);
+    const now = new Date();
+
+    let umur = now.getFullYear() - tgl.getFullYear();
+    let m = now.getMonth() - tgl.getMonth();
+
+    if (m < 0 || (m === 0 && now.getDate() < tgl.getDate())) {
+        umur--;
+    }
+
+    document.getElementById('outNama').innerText = nama;
+    document.getElementById('outUmur').innerText = umur + " tahun";
+    document.getElementById('hasil').style.display = "block";
+}
+
+/* bunga jatuh */
+for (let i = 0; i < 20; i++) {
+    let bunga = document.createElement("div");
+    bunga.className = "bunga";
+    bunga.innerHTML = "🌸";
+
+    bunga.style.left = Math.random() * 100 + "vw";
+    bunga.style.animationDuration = (5 + Math.random() * 5) + "s";
+
+    document.body.appendChild(bunga);
+}
+</script>
+
+</body>
+</html>
